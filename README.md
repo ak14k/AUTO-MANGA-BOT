@@ -1,4 +1,11 @@
-# 🎌 Manga Downloader & Uploader Bot
+# ─「<u>Aᴜᴛᴏ ᴍᴀɴɢᴀ ʙᴏᴛ</u>」─
+
+<p align="center">
+  <img src="assets/img.jpg" alt="Bot Channels" width="1920"/>
+</p>
+
+![Typing SVG](https://readme-typing-svg.herokuapp.com/?lines=THIS+IS+AN+ADVANCE+AUTO+MANGA!+BOT;CREATED+BY+REX+BOTS)</p>
+</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python&logoColor=white">
@@ -74,21 +81,21 @@ docker build -t rexbots-manga-bot -f Docker .
 docker run -d --env-file .env rexbots-manga-bot
 ```
 
-## 🤝 Contributors
+## ─「<u>Cʀᴇᴅɪᴛ</u>:-」─
 
-A huge thanks to the developers who made this project possible:
+• A ʜᴜɢᴇ ᴛʜᴀɴᴋs ᴛᴏ ᴛʜᴇ ᴅᴇᴠᴇʟᴏᴘᴇʀs ᴡʜᴏ ᴍᴀᴅᴇ ᴛʜɪs ᴘʀᴏᴊᴇᴄᴛ ᴘᴏssɪʙʟᴇ:
 
 <div align="center">
 
-| [**Abhi**](https://github.com/abhinai2244) | [**Abhinav**](https://github.com/) | [**Master**]() |
-| :---: | :---: | :---: | :---: |
-| Owner | Developer | Developer |
+[**Aʙʜɪ**](https://github.com/abhinai2244):-Oᴡɴᴇʀ ᴀɴᴅ ɪᴍᴘʀᴏᴠᴇᴅ ᴜɪ ᴀɴᴅ ғɪx ʙᴜɢs. 
+[**Aʙʜɪɴᴀᴠ**]():- Gɪᴠᴇ ᴀᴜᴛᴏ ᴀɴɪᴍᴇ ᴍᴀɴɢᴀ sᴄʀᴀᴘᴘɪɴɢ ʟᴏɢɪᴄ ᴏғ ᴡᴇʙsɪᴛᴇs ᴀɴᴅ ᴀᴅᴅ ғᴇᴀᴛᴜʀᴇs.
+[**Mᴀsᴛᴇʀ**]():- Gɪᴠᴇ ᴘᴏsᴛᴇʀ ʟᴏɢɪᴄ ᴀɴᴅ ғɪx ʙᴜɢs ᴀɴᴅ ᴀᴅᴅ ғᴇᴀᴛᴜʀᴇs
 
 </div>
 
-## 📞 Support
+## ─「<u>Sᴜᴘᴘᴏʀᴛ</u>:-」─
 
-For queries, feature requests, or bug reports, join our official channel:
+- Fᴏʀ ǫᴜᴇʀɪᴇs, ғᴇᴀᴛᴜʀᴇ ʀᴇǫᴜᴇsᴛs, ᴏʀ ʙᴜɢ ʀᴇᴘᴏʀᴛs, ᴊᴏɪɴ ᴏᴜʀ ᴏғғɪᴄɪᴀʟ ᴄʜᴀɴɴᴇʟ:
 
 <div align="center">
   <a href="https://t.me/akaza7902">
