@@ -7,7 +7,7 @@ import motor.motor_asyncio
 import logging
 from datetime import datetime, date, timedelta
 from typing import List, Optional
-from Config import Config
+from config import Config
 
 logging.basicConfig(level=logging.INFO)
 

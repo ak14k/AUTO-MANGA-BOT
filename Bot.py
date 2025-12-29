@@ -22,7 +22,7 @@ import aiofiles
 from aiohttp import web
 from Plugins.web_server import web_server
 
-from Config import Config
+from config import Config
 from Plugins.downloading import Downloader
 from Plugins.Sites.mangadex import MangaDexAPI
 from Plugins.Sites.webcentral import WebCentralAPI

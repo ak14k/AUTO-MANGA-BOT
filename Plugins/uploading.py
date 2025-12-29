@@ -63,11 +63,11 @@ class PyrogramHandler:
             self.flood_wait_until = None
         return False, 0
 
-    async def send_notification(self, Message: str) -> bool:
+    async def send_notification(self, message: str) -> bool:
         try:
             if not self.user_id or not self.app:
                 return False
-            await self.app.send_message(self.user_id, Message)
+            await self.app.send_message(self.user_id, message)
             return True
         except FloodWait as e:
             self.flood_wait_until = datetime.now() + timedelta(seconds=e.value + 5)
