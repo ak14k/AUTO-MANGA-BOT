@@ -26,7 +26,7 @@ async def set_format_cb(client, callback_query):
     buttons = [[InlineKeyboardButton("❌ cancel", callback_data="cancel_input")]]
     await callback_query.message.edit_text(text, reply_markup=InlineKeyboardMarkup(buttons), parse_mode=enums.ParseMode.HTML)
     
-    asyncio.create_task(timeout_handler(Client, callback_query.message, callback_query.from_user.id, "waiting_format"))
+    asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_format"))
 
 @Client.on_callback_query(filters.regex("^set_file_type_btn$"))
 async def set_file_type_cb(client, callback_query):
@@ -68,13 +68,13 @@ async def set_quality_action(client, callback_query):
     qual = int(callback_query.data.split("_")[-1])
     await Seishiro.set_config("image_quality", qual)
     await callback_query.answer(f"Quality set to {qual}%", show_alert=True)
-    await set_compress_cb(Client, callback_query)
+    await set_compress_cb(client, callback_query)
 
 @Client.on_callback_query(filters.regex("^del_quality$"))
 async def del_quality_action(client, callback_query):
     await Seishiro.set_config("image_quality", None)
     await callback_query.answer("Compression removed (Default 100%)", show_alert=True)
-    await set_compress_cb(Client, callback_query)
+    await set_compress_cb(client, callback_query)
 
 @Client.on_callback_query(filters.regex("^set_password_btn$"))
 async def set_password_cb(client, callback_query):
@@ -90,7 +90,7 @@ async def set_password_cb(client, callback_query):
     buttons = [[InlineKeyboardButton("❌ cancel", callback_data="cancel_input")]]
     await callback_query.message.edit_text(text, reply_markup=InlineKeyboardMarkup(buttons), parse_mode=enums.ParseMode.HTML)
     
-    asyncio.create_task(timeout_handler(Client, callback_query.message, callback_query.from_user.id, "waiting_password"))
+    asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_password"))
 
 # Rexbots
 # Don't Remove Credit
@@ -135,17 +135,17 @@ async def merge_size_action(client, callback_query):
         ]
         await edit_msg_with_pic(callback_query.message, text, InlineKeyboardMarkup(buttons))
         
-        asyncio.create_task(timeout_handler(Client, callback_query.message, callback_query.from_user.id, "waiting_merge_size"))
+        asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_merge_size"))
     elif action == "disable":
         await Seishiro.set_config("merge_size_limit", 0)
         await callback_query.answer("Merge size limit disabled!", show_alert=True)
-        await set_merge_size_cb(Client, callback_query) # refresh
+        await set_merge_size_cb(client, callback_query) # refresh
     else:
         try:
             size = int(action)
             await Seishiro.set_config("merge_size_limit", size)
             await callback_query.answer(f"Limit set to {size}MB", show_alert=True)
-            await set_merge_size_cb(Client, callback_query)
+            await set_merge_size_cb(client, callback_query)
         except:
             await callback_query.answer("Error", show_alert=True)
 

@@ -53,13 +53,13 @@ async def auc_add_cb(client, callback_query):
     buttons = [[InlineKeyboardButton("❌ cancel", callback_data="cancel_input")]]
     await callback_query.message.edit_text(text, reply_markup=InlineKeyboardMarkup(buttons), parse_mode=enums.ParseMode.HTML)
     
-    asyncio.create_task(timeout_handler(Client, callback_query.message, callback_query.from_user.id, "waiting_auc_id"))
+    asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_auc_id"))
 
 @Client.on_callback_query(filters.regex("^auc_rem_all$"))
 async def auc_rem_all_cb(client, callback_query):
     await Seishiro.clear_auto_update_channels()
     await callback_query.answer("✅ All channels removed!", show_alert=True)
-    await auc_menu(Client, callback_query) # Refresh menu
+    await auc_menu(client, callback_query) # Refresh menu
 
 @Client.on_callback_query(filters.regex("^auc_import$"))
 async def auc_import_cb(client, callback_query):
@@ -79,7 +79,7 @@ async def set_channel_cb(client, callback_query):
     buttons = [[InlineKeyboardButton("❌ cancel", callback_data="cancel_input")]]
     await callback_query.message.edit_text(text, reply_markup=InlineKeyboardMarkup(buttons), parse_mode=enums.ParseMode.HTML)
     
-    asyncio.create_task(timeout_handler(Client, callback_query.message, callback_query.from_user.id, "waiting_channel"))
+    asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_channel"))
 
 @Client.on_callback_query(filters.regex("^(header_dump_channel|set_dump_channel_btn)$"))
 async def dump_channel_menu(client, callback_query):
@@ -132,13 +132,13 @@ async def set_dump_input_cb(client, callback_query):
     ]
     await edit_msg_with_pic(callback_query.message, text, InlineKeyboardMarkup(buttons))
     
-    asyncio.create_task(timeout_handler(Client, callback_query.message, callback_query.from_user.id, "waiting_dump_channel"))
+    asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_dump_channel"))
 
 @Client.on_callback_query(filters.regex("^rem_dump_channel$"))
 async def rem_dump_channel_cb(client, callback_query):
     await Seishiro.set_config("dump_channel", None)
     await callback_query.answer("Dump Channel Removed!", show_alert=True)
-    await dump_channel_menu(Client, callback_query)
+    await dump_channel_menu(client, callback_query)
 
 
 @Client.on_message(filters.command("set_chnl") & filters.private & admin)

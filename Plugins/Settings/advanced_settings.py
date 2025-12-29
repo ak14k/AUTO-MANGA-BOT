@@ -34,7 +34,7 @@ async def set_regex_cb(client, callback_query):
     buttons = [[InlineKeyboardButton("❌ cancel", callback_data="cancel_input")]]
     await edit_msg_with_pic(callback_query.message, text, InlineKeyboardMarkup(buttons))
     
-    asyncio.create_task(timeout_handler(Client, callback_query.message, callback_query.from_user.id, "waiting_regex"))
+    asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_regex"))
 
 
 # Rexbots

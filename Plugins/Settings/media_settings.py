@@ -46,7 +46,7 @@ async def set_banner_cmd(client, message):
     await message.reply("<blockquote><b>✅ banner image updated</b></blockquote>")
 
 
-async def get_banner_menu(Client):
+async def get_banner_menu(client):
     b1 = await Seishiro.get_config("banner_image_1")
     b2 = await Seishiro.get_config("banner_image_2")
     
@@ -81,7 +81,7 @@ async def get_banner_menu(Client):
 
 @Client.on_callback_query(filters.regex("^set_banner_btn$"))
 async def set_banner_cb(client, callback_query):
-    text, markup = await get_banner_menu(Client)
+    text, markup = await get_banner_menu(client)
     await edit_msg_with_pic(callback_query.message, text, markup)
 
 @Client.on_callback_query(filters.regex("^set_banner_(1|2)$"))
@@ -100,14 +100,14 @@ async def set_banner_input_cb(client, callback_query):
     
     await callback_query.message.edit_text(text, reply_markup=InlineKeyboardMarkup(buttons), parse_mode=enums.ParseMode.HTML)
     
-    asyncio.create_task(timeout_handler(Client, callback_query.message, callback_query.from_user.id, f"waiting_banner_{num}"))
+    asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, f"waiting_banner_{num}"))
 
 @Client.on_callback_query(filters.regex("^del_banner_(1|2)$"))
 async def del_banner_cb(client, callback_query):
     num = callback_query.data.split("_")[-1]
     await Seishiro.set_config(f"banner_image_{num}", None)
     await callback_query.answer(f"Banner {num} deleted!", show_alert=True)
-    await set_banner_cb(Client, callback_query)
+    await set_banner_cb(client, callback_query)
 
 # Rexbots
 # Don't Remove Credit
@@ -161,13 +161,13 @@ async def caption_input_cb(client, callback_query):
     buttons = [[InlineKeyboardButton("❌ cancel", callback_data="cancel_input")]]
     await callback_query.message.edit_text(text, reply_markup=InlineKeyboardMarkup(buttons), parse_mode=enums.ParseMode.HTML)
     
-    asyncio.create_task(timeout_handler(Client, callback_query.message, callback_query.from_user.id, "waiting_caption"))
+    asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_caption"))
 
 @Client.on_callback_query(filters.regex("^del_caption_btn$"))
 async def del_caption_cb_ui(client, callback_query):
     await Seishiro.set_caption(None)
     await callback_query.answer("Caption deleted!", show_alert=True)
-    await set_caption_cb(Client, callback_query)
+    await set_caption_cb(client, callback_query)
 
 
 @Client.on_callback_query(filters.regex("^set_(channel_stickers|update_sticker)_btn$"))
@@ -184,7 +184,7 @@ async def sticker_placeholder(client, callback_query):
     buttons = [[InlineKeyboardButton("❌ cancel", callback_data="cancel_input")]]
     await callback_query.message.edit_text(text, reply_markup=InlineKeyboardMarkup(buttons), parse_mode=enums.ParseMode.HTML)
     
-    asyncio.create_task(timeout_handler(Client, callback_query.message, callback_query.from_user.id, f"waiting_{key}"))
+    asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, f"waiting_{key}"))
 
 @Client.on_callback_query(filters.regex("^set_update_text_btn$"))
 async def update_text_cb(client, callback_query):
@@ -199,7 +199,7 @@ async def update_text_cb(client, callback_query):
     buttons = [[InlineKeyboardButton("❌ cancel", callback_data="cancel_input")]]
     await callback_query.message.edit_text(text, reply_markup=InlineKeyboardMarkup(buttons), parse_mode=enums.ParseMode.HTML)
     
-    asyncio.create_task(timeout_handler(Client, callback_query.message, callback_query.from_user.id, "waiting_update_text"))
+    asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_update_text"))
 
 @Client.on_callback_query(filters.regex("^set_thumb_btn$"))
 async def set_thumb_cb(client, callback_query):
@@ -214,7 +214,7 @@ async def set_thumb_cb(client, callback_query):
     buttons = [[InlineKeyboardButton("❌ cancel", callback_data="cancel_input")]]
     await callback_query.message.edit_text(text, reply_markup=InlineKeyboardMarkup(buttons), parse_mode=enums.ParseMode.HTML)
     
-    asyncio.create_task(timeout_handler(Client, callback_query.message, callback_query.from_user.id, "waiting_thumb"))
+    asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_thumb"))
 
 
 

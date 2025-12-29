@@ -11,7 +11,7 @@ from Plugins.helper import get_styled_text, user_states, edit_msg_with_pic
 from Plugins.Settings.input_helper import timeout_handler
 from Plugins.Settings.main_settings import settings_main_menu_2
 import asyncio
-from Config import Config
+from config import Config
 
 
 @Client.on_callback_query(filters.regex("^admin_menu_btn$"))
@@ -31,12 +31,12 @@ async def admin_menu_cb(client, callback_query):
             InlineKeyboardButton("del admin ➖", callback_data="admin_del_btn")
         ],
         [
-            InlineKeyboardButton("ban user 🚫", callback_data="admin_ban_btn"),
-            InlineKeyboardButton("unban user ✅", callback_data="admin_unban_btn")
+            InlineKeyboardButton("ban user ", callback_data="admin_ban_btn"),
+            InlineKeyboardButton("unban user ", callback_data="admin_unban_btn")
         ],
         [
-            InlineKeyboardButton("list admins 📋", callback_data="admin_list_btn"),
-            InlineKeyboardButton("view watermark 💧", callback_data="admin_view_wm_btn")
+            InlineKeyboardButton("list admins ", callback_data="admin_list_btn"),
+            InlineKeyboardButton("view watermark ", callback_data="admin_view_wm_btn")
         ],
          [
             InlineKeyboardButton("add fsub ➕", callback_data="add_fsub_btn"),
@@ -44,8 +44,8 @@ async def admin_menu_cb(client, callback_query):
             InlineKeyboardButton("fsub Config 📢", callback_data="fsub_config_btn")
         ],
         [
-            InlineKeyboardButton("broadcast 📢", callback_data="broadcast_btn"),
-            InlineKeyboardButton("channels 📺", callback_data="admin_channels_btn")
+            InlineKeyboardButton("broadcast ", callback_data="broadcast_btn"),
+            InlineKeyboardButton("channels ", callback_data="admin_channels_btn")
         ],
         [
             InlineKeyboardButton("⬅ back", callback_data="settings_menu_2")
@@ -53,7 +53,7 @@ async def admin_menu_cb(client, callback_query):
     ]
     
     await edit_msg_with_pic(
-        Message=callback_query.message,
+        message=callback_query.message,
         text=text,
         buttons=InlineKeyboardMarkup(buttons)
     )
@@ -69,7 +69,7 @@ async def add_admin_btn_cb(client, callback_query):
     user_states[callback_query.from_user.id] = {"state": "waiting_add_admin"}
     buttons = [[InlineKeyboardButton("❌ cancel", callback_data="cancel_input")]]
     await edit_msg_with_pic(callback_query.message, text, InlineKeyboardMarkup(buttons))
-    asyncio.create_task(timeout_handler(Client, callback_query.message, callback_query.from_user.id, "waiting_add_admin"))
+    asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_add_admin"))
 
 @Client.on_callback_query(filters.regex("^admin_del_btn$"))
 async def del_admin_btn_cb(client, callback_query):
@@ -81,7 +81,7 @@ async def del_admin_btn_cb(client, callback_query):
     user_states[callback_query.from_user.id] = {"state": "waiting_del_admin"}
     buttons = [[InlineKeyboardButton("❌ cancel", callback_data="cancel_input")]]
     await edit_msg_with_pic(callback_query.message, text, InlineKeyboardMarkup(buttons))
-    asyncio.create_task(timeout_handler(Client, callback_query.message, callback_query.from_user.id, "waiting_del_admin"))
+    asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_del_admin"))
 
 @Client.on_callback_query(filters.regex("^admin_ban_btn$"))
 async def ban_user_btn_cb(client, callback_query):
@@ -93,7 +93,7 @@ async def ban_user_btn_cb(client, callback_query):
     user_states[callback_query.from_user.id] = {"state": "waiting_ban_id"}
     buttons = [[InlineKeyboardButton("❌ cancel", callback_data="cancel_input")]]
     await edit_msg_with_pic(callback_query.message, text, InlineKeyboardMarkup(buttons))
-    asyncio.create_task(timeout_handler(Client, callback_query.message, callback_query.from_user.id, "waiting_ban_id"))
+    asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_ban_id"))
 
 @Client.on_callback_query(filters.regex("^admin_unban_btn$"))
 async def unban_user_btn_cb(client, callback_query):
@@ -105,7 +105,7 @@ async def unban_user_btn_cb(client, callback_query):
     user_states[callback_query.from_user.id] = {"state": "waiting_unban_id"}
     buttons = [[InlineKeyboardButton("❌ cancel", callback_data="cancel_input")]]
     await edit_msg_with_pic(callback_query.message, text, InlineKeyboardMarkup(buttons))
-    asyncio.create_task(timeout_handler(Client, callback_query.message, callback_query.from_user.id, "waiting_unban_id"))
+    asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_unban_id"))
 
 @Client.on_callback_query(filters.regex("^admin_list_btn$"))
 async def list_admins_cb(client, callback_query):
@@ -189,7 +189,7 @@ async def add_fsub_btn_cb(client, callback_query):
     user_states[callback_query.from_user.id] = {"state": "waiting_fsub_id"} # Reuse existing state
     buttons = [[InlineKeyboardButton("❌ cancel", callback_data="cancel_input")]]
     await edit_msg_with_pic(callback_query.message, text, InlineKeyboardMarkup(buttons))
-    asyncio.create_task(timeout_handler(Client, callback_query.message, callback_query.from_user.id, "waiting_fsub_id"))
+    asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_fsub_id"))
 
 @Client.on_callback_query(filters.regex("^rem_fsub_btn$"))
 async def rem_fsub_btn_cb(client, callback_query):
@@ -201,7 +201,7 @@ async def rem_fsub_btn_cb(client, callback_query):
     user_states[callback_query.from_user.id] = {"state": "waiting_fsub_rem_id"} # Reuse existing state
     buttons = [[InlineKeyboardButton("❌ cancel", callback_data="cancel_input")]]
     await edit_msg_with_pic(callback_query.message, text, InlineKeyboardMarkup(buttons))
-    asyncio.create_task(timeout_handler(Client, callback_query.message, callback_query.from_user.id, "waiting_fsub_rem_id"))
+    asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_fsub_rem_id"))
 
 @Client.on_callback_query(filters.regex("^broadcast_btn$"))
 async def broadcast_btn_cb(client, callback_query):
@@ -214,7 +214,7 @@ async def broadcast_btn_cb(client, callback_query):
     user_states[callback_query.from_user.id] = {"state": "waiting_broadcast_msg"}
     buttons = [[InlineKeyboardButton("❌ cancel", callback_data="cancel_input")]]
     await edit_msg_with_pic(callback_query.message, text, InlineKeyboardMarkup(buttons))
-    asyncio.create_task(timeout_handler(Client, callback_query.message, callback_query.from_user.id, "waiting_broadcast_msg"))
+    asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_broadcast_msg"))
 
 @Client.on_callback_query(filters.regex("^admin_channels_btn$"))
 async def admin_channels_cb(client, callback_query):

@@ -56,7 +56,7 @@ async def set_int_preset_cb(client, callback_query):
         await callback_query.answer(f"✅ Interval set to {seconds}s", show_alert=True)
     else:
         await callback_query.answer("❌ Error setting interval", show_alert=True)
-    await set_interval_menu(Client, callback_query)
+    await set_interval_menu(client, callback_query)
 
 @Client.on_callback_query(filters.regex("^set_int_custom$"))
 async def set_int_custom_cb(client, callback_query):
@@ -71,7 +71,7 @@ async def set_int_custom_cb(client, callback_query):
     buttons = [[InlineKeyboardButton("❌ cancel", callback_data="cancel_input")]]
     await edit_msg_with_pic(callback_query.message, text, InlineKeyboardMarkup(buttons))
     
-    asyncio.create_task(timeout_handler(Client, callback_query.message, callback_query.from_user.id, "waiting_interval"))
+    asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_interval"))
 
 
 
@@ -116,7 +116,7 @@ async def fsub_add_cb(client, callback_query):
     buttons = [[InlineKeyboardButton("❌ cancel", callback_data="cancel_input")]]
     await edit_msg_with_pic(callback_query.message, text, InlineKeyboardMarkup(buttons))
     
-    asyncio.create_task(timeout_handler(Client, callback_query.message, callback_query.from_user.id, "waiting_fsub_id"))
+    asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_fsub_id"))
 
 @Client.on_callback_query(filters.regex("^fsub_list$"))
 async def fsub_list_cb(client, callback_query):
@@ -143,7 +143,7 @@ async def fsub_remove_cb(client, callback_query):
     user_states[callback_query.from_user.id] = {"state": "waiting_fsub_rem_id"}
     buttons = [[InlineKeyboardButton("❌ cancel", callback_data="cancel_input")]]
     await edit_msg_with_pic(callback_query.message, text, InlineKeyboardMarkup(buttons))
-    asyncio.create_task(timeout_handler(Client, callback_query.message, callback_query.from_user.id, "waiting_fsub_rem_id"))
+    asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_fsub_rem_id"))
 
 
 @Client.on_callback_query(filters.regex("^set_watermark_btn$"))
@@ -186,7 +186,7 @@ async def wm_set_text_cb(client, callback_query):
     user_states[callback_query.from_user.id] = {"state": "waiting_wm_text"}
     buttons = [[InlineKeyboardButton("❌ cancel", callback_data="cancel_input")]]
     await edit_msg_with_pic(callback_query.message, text, InlineKeyboardMarkup(buttons))
-    asyncio.create_task(timeout_handler(Client, callback_query.message, callback_query.from_user.id, "waiting_wm_text"))
+    asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_wm_text"))
 
 # Rexbots
 # Don't Remove Credit
@@ -198,7 +198,7 @@ async def wm_set_text_cb(client, callback_query):
 async def wm_delete_cb(client, callback_query):
     await Seishiro.delete_watermark()
     await callback_query.answer("Watermark deleted!", show_alert=True)
-    await watermark_menu(Client, callback_query)
+    await watermark_menu(client, callback_query)
 
 @Client.on_callback_query(filters.regex("^wm_set_pos$"))
 async def wm_set_pos_cb(client, callback_query):
@@ -231,7 +231,7 @@ async def wm_pos_set_cb(client, callback_query):
         font_size=wm.get("font_size", 20)
     )
     await callback_query.answer(f"Position set to {pos}", show_alert=True)
-    await watermark_menu(Client, callback_query)
+    await watermark_menu(client, callback_query)
 
 @Client.on_callback_query(filters.regex("^wm_set_color$"))
 async def wm_set_color_cb(client, callback_query):
@@ -243,7 +243,7 @@ async def wm_set_color_cb(client, callback_query):
     user_states[callback_query.from_user.id] = {"state": "waiting_wm_color"}
     buttons = [[InlineKeyboardButton("❌ cancel", callback_data="cancel_input")]]
     await edit_msg_with_pic(callback_query.message, text, InlineKeyboardMarkup(buttons))
-    asyncio.create_task(timeout_handler(Client, callback_query.message, callback_query.from_user.id, "waiting_wm_color"))
+    asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_wm_color"))
 
 @Client.on_callback_query(filters.regex("^wm_set_opacity$"))
 async def wm_set_opacity_cb(client, callback_query):
@@ -255,7 +255,7 @@ async def wm_set_opacity_cb(client, callback_query):
     user_states[callback_query.from_user.id] = {"state": "waiting_wm_opacity"}
     buttons = [[InlineKeyboardButton("❌ cancel", callback_data="cancel_input")]]
     await edit_msg_with_pic(callback_query.message, text, InlineKeyboardMarkup(buttons))
-    asyncio.create_task(timeout_handler(Client, callback_query.message, callback_query.from_user.id, "waiting_wm_opacity"))
+    asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_wm_opacity"))
 
 
 @Client.on_callback_query(filters.regex("^set_deltimer_btn$"))
@@ -288,7 +288,7 @@ async def set_dt_preset(client, callback_query):
     val = int(callback_query.matches[0].group(1))
     await Seishiro.set_del_timer(val)
     await callback_query.answer(f"Timer set to {val}s", show_alert=True)
-    await deltimer_menu(Client, callback_query)
+    await deltimer_menu(client, callback_query)
 
 @Client.on_callback_query(filters.regex("^set_dt_custom$"))
 async def set_dt_custom(client, callback_query):
@@ -296,7 +296,7 @@ async def set_dt_custom(client, callback_query):
     user_states[callback_query.from_user.id] = {"state": "waiting_deltimer"}
     buttons = [[InlineKeyboardButton("❌ cancel", callback_data="cancel_input")]]
     await edit_msg_with_pic(callback_query.message, text, InlineKeyboardMarkup(buttons))
-    asyncio.create_task(timeout_handler(Client, callback_query.message, callback_query.from_user.id, "waiting_deltimer"))
+    asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_deltimer"))
 
 
 @Client.on_callback_query(filters.regex("^toggle_monitor$"))
@@ -310,14 +310,14 @@ async def toggle_monitor_cb(client, callback_query):
     
     if new_status:
         try:
-            if hasattr(Client, 'bot_instance'):
-                asyncio.create_task(Client.bot_instance.check_updates())
+            if hasattr(client, 'bot_instance'):
+                asyncio.create_task(client.bot_instance.check_updates())
             else:
                 logger.warning("bot_instance not attached to Client!")
         except Exception as e:
             logger.error(f"Failed to trigger immediate check: {e}")
 
-    await settings_main_menu_2(Client, callback_query)
+    await settings_main_menu_2(client, callback_query)
 
 @Client.on_callback_query(filters.regex("^view_progress$"))
 async def view_progress_cb(client, callback_query):

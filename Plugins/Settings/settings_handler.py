@@ -7,7 +7,7 @@
 from pyrogram import Client, filters, enums
 from Database.database import Seishiro
 from Plugins.helper import user_states, get_styled_text
-from Config import Config
+from config import Config
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 
@@ -273,7 +273,7 @@ async def settings_input_listener(client, message):
         elif state == "waiting_del_admin":
             try:
                 del_id = int(message.text)
-                if del_id == Config.user_id:
+                if del_id == Config.USER_ID:
                     await message.reply("❌ cannot remove owner.")
                 else:
                     await Seishiro.remove_admin(del_id)
@@ -293,7 +293,7 @@ async def settings_input_listener(client, message):
                 
                 for user_id in all_users:
                     try:
-                        await Message.copy(chat_id=user_id)
+                        await message.copy(chat_id=user_id)
                         successful += 1
                     except Exception:
                         unsuccessful += 1
@@ -316,7 +316,7 @@ async def settings_input_listener(client, message):
         elif state == "waiting_ban_id":
             try:
                 target_id = int(message.text)
-                if target_id == Config.user_id or target_id == message.from_user.id:
+                if target_id == Config.USER_ID or target_id == message.from_user.id:
                      await message.reply("❌ cannot ban owner or self.")
                 else:
                     if await Seishiro.ban_user(target_id):

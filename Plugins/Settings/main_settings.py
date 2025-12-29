@@ -6,7 +6,7 @@
 
 from pyrogram import Client, filters, enums
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from Config import Config
+from config import Config
 from Database.database import Seishiro
 from Database.database import Seishiro
 from Plugins.helper import get_styled_text, admin, edit_msg_with_pic
@@ -20,50 +20,50 @@ async def settings_main_menu(client, callback_query):
             return
 
         buttons = [
-            [InlineKeyboardButton("auto update channels", callback_data="header_auto_update_channels")],
+            [InlineKeyboardButton("Auto Update Channels", callback_data="header_auto_update_channels")],
             
             [
-                InlineKeyboardButton("banner", callback_data="set_banner_btn"),
-                InlineKeyboardButton("caption", callback_data="set_caption_btn")
+                InlineKeyboardButton("Banner", callback_data="set_banner_btn"),
+                InlineKeyboardButton("Caption", callback_data="set_caption_btn")
             ],
             [
-                InlineKeyboardButton("channel stickers", callback_data="set_channel_stickers_btn"),
-                InlineKeyboardButton("compress", callback_data="set_compress_btn")
+                InlineKeyboardButton("Channel Stickers", callback_data="set_channel_stickers_btn"),
+                InlineKeyboardButton("Compress", callback_data="set_compress_btn")
             ],
             [
-                InlineKeyboardButton("file name", callback_data="set_format_btn"),
-                InlineKeyboardButton("file type", callback_data="set_file_type_btn")
-            ],
-
-            [InlineKeyboardButton("rexbots offical", callback_data="header_watermark")],
-
-            [
-                InlineKeyboardButton("hyper link", callback_data="set_hyperlink_btn"),
-                InlineKeyboardButton("merge size", callback_data="set_merge_size_btn")
-            ],
-            [
-                InlineKeyboardButton("password", callback_data="set_password_btn"),
-                InlineKeyboardButton("regex", callback_data="set_regex_btn")
-            ],
-            [
-                InlineKeyboardButton("thumbnail", callback_data="set_thumb_btn"), 
-                InlineKeyboardButton("update channel", callback_data="set_channel_btn")
+                InlineKeyboardButton("File Name", callback_data="set_format_btn"),
+                InlineKeyboardButton("File Type", callback_data="set_file_type_btn")
             ],
 
+            [InlineKeyboardButton("Rexbots Offical", callback_data="header_watermark")],
+
             [
-                InlineKeyboardButton("✨ home ✨", callback_data="start_menu"),
-                InlineKeyboardButton("➡️ next ➡️", callback_data="settings_menu_2")
+                InlineKeyboardButton("Hyper Link", callback_data="set_hyperlink_btn"),
+                InlineKeyboardButton("Merge Size", callback_data="set_merge_size_btn")
+            ],
+            [
+                InlineKeyboardButton("Password", callback_data="set_password_btn"),
+                InlineKeyboardButton("Regex", callback_data="set_regex_btn")
+            ],
+            [
+                InlineKeyboardButton("Thumbnail", callback_data="set_thumb_btn"), 
+                InlineKeyboardButton("Update Channel", callback_data="set_channel_btn")
+            ],
+
+            [
+                InlineKeyboardButton("✨ Home ✨", callback_data="start_menu"),
+                InlineKeyboardButton("✨ Next ✨ ", callback_data="settings_menu_2")
             ]
         ]
         
         text = (
-            "<blockquote><b>⚙️ Settings Menu (Page 1/2)</b></blockquote>\n\n"
+            "<blockquote><b> Settings Menu (Page 1/2)</b></blockquote>\n\n"
             "<blockquote>Select an option below to configure the bot. "
             "All changes are saved instantly to the database.</blockquote>"
         )
 
         await edit_msg_with_pic(
-            Message=callback_query.message,
+            message=callback_query.message,
             text=text,
             buttons=InlineKeyboardMarkup(buttons)
         )
@@ -74,43 +74,43 @@ async def settings_main_menu(client, callback_query):
 async def settings_main_menu_2(client, callback_query):
     try:
         buttons = [
-            [InlineKeyboardButton("dump channel", callback_data="header_dump_channel")],
+            [InlineKeyboardButton("Dump Channel", callback_data="header_dump_channel")],
 
             [
-                InlineKeyboardButton("update text", callback_data="set_update_text_btn"),
+                InlineKeyboardButton("Update Text", callback_data="set_update_text_btn"),
             ],
 
-            [InlineKeyboardButton("monitor & fsub", callback_data="header_new_items")],
+            [InlineKeyboardButton("Monitor & Fsub", callback_data="header_new_items")],
 
             [
                 InlineKeyboardButton(f"Monitor: {'✅ ON' if await Seishiro.get_monitoring_status() else '❌ OFF'}", callback_data="toggle_monitor"),
-                InlineKeyboardButton("view progress 📊", callback_data="view_progress")
+                InlineKeyboardButton("View Progress 📊", callback_data="view_progress")
             ],
 
             [
-                InlineKeyboardButton("set interval", callback_data="set_interval_btn"),
-                InlineKeyboardButton("fsub mode", callback_data="set_fsub_btn")
+                InlineKeyboardButton("Set Interval", callback_data="set_interval_btn"),
+                InlineKeyboardButton("Fsub Mode", callback_data="set_fsub_btn")
             ],
             [
-                InlineKeyboardButton("watermark", callback_data="set_watermark_btn"),
-                InlineKeyboardButton("delete timer", callback_data="set_deltimer_btn")
+                InlineKeyboardButton("Watermark", callback_data="set_watermark_btn"),
+                InlineKeyboardButton("Delete Timer", callback_data="set_deltimer_btn")
             ],
 
-            [InlineKeyboardButton("manga source", callback_data="header_source")],
+            [InlineKeyboardButton("Manga Source", callback_data="header_source")],
 
             [
                 InlineKeyboardButton(f"📡 Source: {await Seishiro.get_config('manga_source', 'mangadex')}", callback_data="set_source_btn")
             ],
 
-            [InlineKeyboardButton("admin controls", callback_data="header_admins")],
+            [InlineKeyboardButton("Admin Controls", callback_data="header_admins")],
             
             [
-                InlineKeyboardButton("admins 👮‍♂️", callback_data="admin_menu_btn")
+                InlineKeyboardButton("Admins 👮‍♂️", callback_data="admin_menu_btn")
             ],
 
             [
-                InlineKeyboardButton("⬅️ back ⬅️", callback_data="settings_menu_1"),
-                InlineKeyboardButton("❄️ close ❄️", callback_data="stats_close")
+                InlineKeyboardButton("⬅️ Back ⬅️", callback_data="settings_menu_1"),
+                InlineKeyboardButton("❄️ Close ❄️", callback_data="stats_close")
             ]
         ]
         
@@ -126,7 +126,7 @@ async def settings_main_menu_2(client, callback_query):
         )
 
         await edit_msg_with_pic(
-            Message=callback_query.message,
+            message=callback_query.message,
             text=text,
             buttons=InlineKeyboardMarkup(buttons)
         )
@@ -150,12 +150,12 @@ async def start_menu_cb(client, callback_query):
     )
     buttons = InlineKeyboardMarkup([
         [
-            InlineKeyboardButton("⚙️ settings", callback_data="settings_menu"),
-            InlineKeyboardButton("📚 help", callback_data="help_menu")
+            InlineKeyboardButton(" Settings", callback_data="settings_menu"),
+            InlineKeyboardButton(" Help", callback_data="help_menu")
         ],
         [
-            InlineKeyboardButton("📢 official channel", url="https://t.me/akaza7902"),
-            InlineKeyboardButton("👨‍💻 developer", url="https://t.me/akaza7902")
+            InlineKeyboardButton(" Official Channel", url="https://t.me/akaza7902"),
+            InlineKeyboardButton(" Developer", url="https://t.me/akaza7902")
         ]
     ])
     await edit_msg_with_pic(callback_query.message, caption, buttons)
@@ -189,7 +189,7 @@ async def set_source_menu(client, callback_query):
         ]
         
         await edit_msg_with_pic(
-            Message=callback_query.message,
+            message=callback_query.message,
             text=text,
             buttons=InlineKeyboardMarkup(buttons)
         )
@@ -207,7 +207,7 @@ async def set_source_callback(client, callback_query):
     new_source = callback_query.matches[0].group(1)
     await Seishiro.set_config('manga_source', new_source)
     await callback_query.answer(f"Source set to: {new_source}", show_alert=True)
-    await set_source_menu(Client, callback_query)
+    await set_source_menu(client, callback_query)
 
 
 # Rexbots

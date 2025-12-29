@@ -9,7 +9,7 @@ import random
 from pyrogram import Client, filters, enums
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from Database.database import Seishiro
-from Config import Config
+from config import Config
 from Plugins.helper import edit_msg_with_pic
 
 logger = logging.getLogger(__name__)
@@ -20,7 +20,7 @@ logger.info("PLUGIN LOAD: start.py loaded successfully")
 async def start_msg(client, message):
     try:
         from Plugins.helper import check_fsub
-        missing = await check_fsub(Client, message.from_user.id)
+        missing = await check_fsub(client, message.from_user.id)
         if missing:
             buttons = []
             for ch in missing:
@@ -28,9 +28,9 @@ async def start_msg(client, message):
             
             if len(message.command) > 1:
                deep_link = message.command[1]
-               buttons.append([InlineKeyboardButton("done ✅", url=f"https://t.me/{Client.me.username}?start={deep_link}")])
+               buttons.append([InlineKeyboardButton("done ✅", url=f"https://t.me/{client.me.username}?start={deep_link}")])
             else:
-               buttons.append([InlineKeyboardButton("done ✅", url=f"https://t.me/{Client.me.username}?start=True")])
+               buttons.append([InlineKeyboardButton("done ✅", url=f"https://t.me/{client.me.username}?start=True")])
                
             await message.reply_text(
                 "<b>⚠️ you must join our channels to use this bot!</b>\n\n"
@@ -64,7 +64,7 @@ async def start_msg(client, message):
             logger.error(f"Database error (Ban Check): {db_e}")
 
         try:
-            await Seishiro.add_user(Client, Message)
+            await Seishiro.add_user(client, message)
         except Exception as db_e:
             logger.error(f"Database error (Add User): {db_e}")
 
@@ -87,12 +87,12 @@ async def start_msg(client, message):
 
         buttons = InlineKeyboardMarkup([
             [
-                InlineKeyboardButton(" settings", callback_data="settings_menu"),
-                InlineKeyboardButton(" help", callback_data="help_menu")
+                InlineKeyboardButton(" Settings", callback_data="settings_menu"),
+                InlineKeyboardButton(" Help", callback_data="help_menu")
             ],
             [
-                InlineKeyboardButton("📢 official channel", url="https://t.me/RexBots_Official"),
-                InlineKeyboardButton(" developer", url="https://t.me/RexBots_Official")
+                InlineKeyboardButton(" Official Channel", url="https://t.me/RexBots_Official"),
+                InlineKeyboardButton(" Developer", url="https://t.me/RexBots_Official")
             ]
         ])
 
