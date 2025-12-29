@@ -88,7 +88,9 @@ docker run -d --env-file .env rexbots-manga-bot
 <div align="center">
 
 [**Aʙʜɪ**](https://github.com/abhinai2244):-Oᴡɴᴇʀ ᴀɴᴅ ɪᴍᴘʀᴏᴠᴇᴅ ᴜɪ ᴀɴᴅ ғɪx ʙᴜɢs.
+
 [**Aʙʜɪɴᴀᴠ**]():- Gɪᴠᴇ ᴀᴜᴛᴏ ᴀɴɪᴍᴇ ᴍᴀɴɢᴀ sᴄʀᴀᴘᴘɪɴɢ ʟᴏɢɪᴄ ᴏғ ᴡᴇʙsɪᴛᴇs ᴀɴᴅ ᴀᴅᴅ ғᴇᴀᴛᴜʀᴇs.
+
 [**Mᴀsᴛᴇʀ**]():- Gɪᴠᴇ ᴘᴏsᴛᴇʀ ʟᴏɢɪᴄ ᴀɴᴅ ғɪx ʙᴜɢs ᴀɴᴅ ᴀᴅᴅ ғᴇᴀᴛᴜʀᴇs
 
 </div>
