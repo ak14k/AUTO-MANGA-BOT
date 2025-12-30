@@ -102,7 +102,7 @@ async def settings_input_listener(client, message):
                     chat = await client.get_chat(cid)
                     title = chat.title
                 except Exception as e:
-                    await message.reply(f"❌ <b>error:</b> bot cannot access channel or invalid id.\n`{e}`", parse_mode=enums.ParseMode.html)
+                    await message.reply(f"❌ <b>error:</b> bot cannot access channel or invalid id.\n`{e}`", parse_mode=enums.ParseMode.HTML)
                     return
                 
                 await Seishiro.add_auto_update_channel(cid, title)

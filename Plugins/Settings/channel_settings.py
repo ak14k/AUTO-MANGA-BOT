@@ -152,7 +152,7 @@ async def set_channel_cmd(client, message):
         except:
              return await message.reply("❌ bot cannot access this channel.")
         await Seishiro.set_default_channel(cid)
-        await message.reply(f"<blockquote><b>✅ upload channel set: {cid}</b></blockquote>", parse_mode=enums.ParseMode.html)
+        await message.reply(f"<blockquote><b>✅ upload channel set: {cid}</b></blockquote>", parse_mode=enums.ParseMode.HTML)
     except ValueError:
         await message.reply("❌ invalid id")
 
