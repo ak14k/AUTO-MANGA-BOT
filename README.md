@@ -1,7 +1,7 @@
 # ─「<u>Aᴜᴛᴏ ᴍᴀɴɢᴀ ʙᴏᴛ</u>」─
 
 <p align="center">
-  <img src="assets/img.jpg" alt="Bot Channels" width="1920"/>
+  <img src="https://ibb.co/VYSPzSDH" alt="Rex Bots" width="1920"/>
 </p>
 
 ![Typing SVG](https://readme-typing-svg.herokuapp.com/?lines=THIS+IS+AN+ADVANCE+AUTO+MANGA!+BOT;CREATED+BY+REX+BOTS)</p>
